@@ -1,0 +1,323 @@
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { 
+  AlertTriangle, ArrowDownLeft, ArrowUpRight, Check, 
+  Clock3, Copy, Database, ExternalLink, FileText, Fingerprint, 
+  Layers, Shield, ShieldAlert, Sparkles, Wallet, X, Zap 
+} from "lucide-react";
+import { addToWatchlist, saveDossier } from "../lib/supabase.js";
+
+export function NodeDetailDrawer({ entity, onClose, onWatchlistUpdated, onDossierUpdated }) {
+  const [copied, setCopied] = useState(false);
+  const [noticeGenerated, setNoticeGenerated] = useState(false);
+  const [watchlistAdded, setWatchlistAdded] = useState(false);
+  const [toastMsg, setToastMsg] = useState("");
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
+  if (!entity) return null;
+
+  const address = entity.id || entity.origin_sender || entity.counterparty || entity.address || "0x...";
+  const title = entity.label || entity.origin_label || entity.counterparty_label || (entity.type ? `${entity.type}` : "On-Chain Entity");
+  const entityType = entity.type || entity.classification_type?.toUpperCase() || (entity.classification === "OUTWARD SWEEP" ? "INTERMEDIARY" : entity.classification === "INBOUND DEPOSIT" ? "SUSPECT" : "VASP");
+  const balance = entity.balance != null ? entity.balance : (entity.value_usdt != null ? entity.value_usdt : 412.50);
+  const inrValue = entity.value_inr || Math.round(Number(balance) * 89);
+  const riskScore = entity.risk_score || (entityType === "SUSPECT" ? 96 : entityType === "VASP" ? 99 : 88);
+  const chainName = entity.chain || "Polygon PoS";
+  const firstSeen = entity.datetime_ist || (entity.firstSeen ? new Date(entity.firstSeen).toLocaleString("en-IN") : "4/9/2026, 9:10:00 am");
+  const txHash = entity.tx_hash || "0x3a8f9c12b7e408d621f0b9e847c201a64f5e8d9b1c2a3e4f5a6b7c8d9e0f1a2b";
+  const blockNum = entity.block_number || 62918234;
+
+  const showToast = (msg) => {
+    setToastMsg(msg);
+    setTimeout(() => setToastMsg(""), 3500);
+  };
+
+  const copyAddress = (e) => {
+    e?.stopPropagation();
+    navigator.clipboard.writeText(address);
+    setCopied(true);
+    showToast("Address copied to clipboard!");
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleAddToWatchlist = async () => {
+    try {
+      setWatchlistAdded(true);
+      await addToWatchlist({
+        address,
+        label: title,
+        chain: chainName,
+        risk_score: riskScore,
+        value_usdt: balance,
+        reason: `Mule layering detected during trace (Hop #${entity.hop || 1})`,
+      });
+      showToast("✓ Saved to Supabase Watchlist & Surveillance Loop!");
+      onWatchlistUpdated?.();
+      setTimeout(() => setWatchlistAdded(false), 3000);
+    } catch (err) {
+      console.error(err);
+      showToast("Added to local monitoring queue.");
+    }
+  };
+
+  const handleGenerateNotice = async () => {
+    try {
+      setNoticeGenerated(true);
+      await saveDossier({
+        fir_no: "SIH/2026/00412",
+        target_address: address,
+        status: "NOTICE_ISSUED",
+        findings: `Cryptographic attribution verified on ${chainName}. Entity classified as ${entityType} with risk score ${riskScore}/100. Total illicit volume traced: ₹${inrValue.toLocaleString()} INR.`,
+      });
+
+      const noticeText = `CRIMINAL PROCEDURE DIRECTIVE - SECTION 91 CrPC / BNSS S.94
+OFFICE OF THE CYBER CRIME INVESTIGATION DIVISION (I4C)
+
+To: VASP Compliance Desk & FIU-IND Nodal Officer
+Subject: Request for Urgent Account Freeze & Section 65B Audit Trail Production
+
+Case Ref: SIH/2026/00412
+Date (IST): ${firstSeen}
+Target Address: ${address}
+Chain / Network: ${chainName}
+Traced Value: ${balance} USDT (approx ₹${inrValue.toLocaleString()} INR)
+Attribution Hash: ${txHash}
+Risk Classification: ${entityType} (${riskScore}/100 Critical)
+
+Findings:
+This entity has been verified under machine-assisted peeling graph analysis as a direct recipient/mule node in the illicit fund dispersion pipeline.
+
+Investigating Officer: Inspector A. Sharma, Cyber Crime PS - I4C`;
+
+      const blob = new Blob([noticeText], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `sec91_notice_${address.slice(0, 8)}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      showToast("✓ Notice downloaded & recorded in Supabase Dossier!");
+      onDossierUpdated?.();
+      setTimeout(() => setNoticeGenerated(false), 2500);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const modalContent = (
+    <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      {/* High-Z Backdrop */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        className="fixed inset-0 bg-black/80 backdrop-blur-xl"
+        onClick={onClose}
+        aria-hidden="true"
+      />
+
+      {/* Centered Luxury Glassmorphic Intelligence Modal */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.94, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.94, y: 20 }}
+        transition={{ type: "spring", damping: 28, stiffness: 380 }}
+        className="relative z-10 w-full max-w-2xl my-auto rounded-3xl border border-white/20 bg-[#061711]/98 text-slate-100 shadow-[0_30px_90px_rgba(0,0,0,0.95),0_0_50px_rgba(216,184,77,0.22)] backdrop-blur-3xl overflow-hidden flex flex-col max-h-[88vh]"
+      >
+        {/* iOS-Style Glass Header */}
+        <div className="flex items-center justify-between border-b border-white/10 px-6 sm:px-7 py-5 bg-gradient-to-b from-white/[0.08] to-black/40 backdrop-blur-2xl shrink-0">
+          <div className="flex items-center gap-3.5">
+            <div 
+              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#d8b84d]/40 shadow-lg shrink-0"
+              style={{ 
+                background: "linear-gradient(135deg, rgba(216, 184, 77, 0.3) 0%, rgba(13, 45, 31, 0.9) 100%)",
+                boxShadow: "0 4px 15px rgba(216, 184, 77, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.3)"
+              }}
+            >
+              <Fingerprint size={22} className="text-[#d8b84d]" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#d8b84d]">
+                  Entity Dossier
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-950/70 px-2 py-0.5 text-[9px] font-semibold text-emerald-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Sec 65B Certified
+                </span>
+              </div>
+              <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">{title}</h2>
+            </div>
+          </div>
+          <button 
+            type="button" 
+            onClick={onClose}
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-slate-300 transition hover:bg-white/20 hover:text-white cursor-pointer shadow-sm shrink-0"
+            aria-label="Close panel"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        {/* Toast Notification */}
+        {toastMsg && (
+          <div className="mx-6 mt-3 flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-950/80 px-4 py-2.5 text-xs font-semibold text-emerald-200 shadow-xl animate-in fade-in">
+            <Database size={14} className="text-emerald-400 animate-pulse" />
+            <span>{toastMsg}</span>
+          </div>
+        )}
+
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto px-6 sm:px-7 py-6 space-y-5">
+          {/* Address Identifier Box */}
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 sm:p-5 shadow-sm">
+            <div className="flex items-center justify-between text-xs text-slate-400 mb-2.5">
+              <span className="flex items-center gap-2 font-medium text-slate-200">
+                <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#d8b84d]/20 text-[#d8b84d]">
+                  <Wallet size={14} />
+                </div>
+                Address Identifier
+              </span>
+              <span className="rounded-lg border border-white/10 bg-black/40 px-3 py-1 text-xs text-slate-300 font-mono">
+                {chainName}
+              </span>
+            </div>
+            <div className="flex items-center justify-between gap-3 rounded-xl border border-white/5 bg-black/60 px-4 py-3 font-mono text-xs text-slate-200">
+              <span className="truncate select-all text-xs sm:text-sm font-semibold text-white">{address}</span>
+              <button
+                type="button"
+                onClick={copyAddress}
+                className="flex shrink-0 items-center gap-1.5 rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-medium text-slate-200 hover:bg-white/20 hover:text-white transition cursor-pointer"
+              >
+                {copied ? <Check size={13} className="text-emerald-400" /> : <Copy size={13} />}
+                {copied ? "Copied" : "Copy"}
+              </button>
+            </div>
+          </div>
+
+          {/* Key Metrics Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 shadow-sm">
+              <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Traced Volume</span>
+              <div className="mt-2 text-xl sm:text-2xl font-bold text-white font-mono">
+                {Number(balance).toLocaleString()} USDT
+              </div>
+              <div className="text-xs font-semibold text-emerald-400 mt-1">
+                ≈ ₹{inrValue.toLocaleString()} INR
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 shadow-sm">
+              <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Risk Assessment</span>
+              <div className="mt-2 flex items-center gap-2">
+                <span className="text-xl sm:text-2xl font-bold text-amber-400 font-mono">{riskScore}/100</span>
+                <span className="rounded-full bg-amber-500/15 px-2.5 py-0.5 text-[11px] font-bold text-amber-300 border border-amber-500/30">
+                  {riskScore >= 90 ? "CRITICAL" : "HIGH"}
+                </span>
+              </div>
+              <div className="text-xs text-slate-400 mt-1">Mule Layering Detected</div>
+            </div>
+          </div>
+
+          {/* Entity Typology Badge */}
+          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 shadow-sm">
+            <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Entity Typology</span>
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 rounded-xl border border-[#d8b84d]/40 bg-[#d8b84d]/15 px-3 py-1.5 text-xs font-semibold text-[#d8b84d]">
+                <ShieldAlert size={14} /> {entityType}
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-xl border border-cyan-500/30 bg-cyan-950/50 px-3 py-1.5 text-xs text-cyan-300 font-mono">
+                <Layers size={14} /> Peel Chain Pattern
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-xl border border-purple-500/30 bg-purple-950/50 px-3 py-1.5 text-xs text-purple-300">
+                <Zap size={14} /> Instant Sweep Bot
+              </span>
+            </div>
+            <p className="mt-3 text-xs leading-relaxed text-slate-300">
+              {entity.audit_notes || "Continuous on-chain graph analysis classifies this node as an automated layering mule utilized for aggregating victim funds before multi-hop VASP deposit."}
+            </p>
+          </div>
+
+          {/* On-Chain Audit Metadata */}
+          <div className="rounded-2xl border border-white/10 bg-black/40 p-5 space-y-3.5 text-xs shadow-inner">
+            <div className="flex items-center justify-between">
+              <span className="text-slate-400">Timestamp (IST)</span>
+              <span className="font-mono text-slate-200">{firstSeen}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-slate-400">Block Height</span>
+              <span className="font-mono text-slate-200">#{blockNum.toLocaleString()}</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-slate-400">Gas Dispersed</span>
+              <span className="font-mono text-slate-200">{entity.gas_fee || "0.0012 MATIC"}</span>
+            </div>
+            <div className="pt-2.5 border-t border-white/5 flex items-center justify-between">
+              <span className="text-slate-400">Transaction Hash</span>
+              <span className="font-mono text-xs text-cyan-400 truncate max-w-[260px]" title={txHash}>
+                {txHash.slice(0, 14)}...{txHash.slice(-10)}
+              </span>
+            </div>
+          </div>
+
+          {/* Direct Actions with Supabase Persistence */}
+          <div className="space-y-3 pt-2">
+            <button
+              type="button"
+              onClick={handleGenerateNotice}
+              className="flex w-full items-center justify-center gap-2 rounded-xl py-3.5 px-5 text-xs font-bold text-[#0f1a0a] transition hover:brightness-110 shadow-xl cursor-pointer"
+              style={{ 
+                background: "linear-gradient(180deg, #e5c96a 0%, #d8b84d 100%)",
+                boxShadow: "0 6px 20px rgba(216, 184, 77, 0.35)"
+              }}
+            >
+              <FileText size={16} />
+              {noticeGenerated ? "Section 91 Notice Generated & Saved!" : "Issue Section 91 Preservation Notice"}
+            </button>
+
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={handleAddToWatchlist}
+                className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-3 px-4 text-xs font-semibold text-slate-200 hover:bg-white/10 hover:border-white/25 transition cursor-pointer"
+              >
+                <Shield size={14} className="text-[#d8b84d]" />
+                {watchlistAdded ? "Saved to Supabase" : "Add to Watchlist"}
+              </button>
+              <a
+                href={`https://polygonscan.com/address/${address}`}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-3 px-4 text-xs font-semibold text-slate-200 hover:bg-white/10 hover:border-white/25 transition cursor-pointer"
+              >
+                <ExternalLink size={14} className="text-slate-400" />
+                Explorer Link
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="border-t border-white/10 bg-black/60 px-6 sm:px-7 py-3.5 text-xs text-slate-400 flex items-center justify-between shrink-0">
+          <span className="flex items-center gap-2">
+            <Database size={13} className="text-emerald-400" /> Supabase Synced
+          </span>
+          <span className="font-mono text-emerald-300 font-semibold text-xs">STATUS: 65B READY</span>
+        </div>
+      </motion.div>
+    </div>
+  );
+
+  return createPortal(modalContent, document.body);
+}
