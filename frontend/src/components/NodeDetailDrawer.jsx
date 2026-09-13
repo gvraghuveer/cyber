@@ -133,10 +133,10 @@ Investigating Officer: Inspector A. Sharma, Cyber Crime PS - I4C`;
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.94, y: 20 }}
         transition={{ type: "spring", damping: 28, stiffness: 380 }}
-        className="relative z-10 w-full max-w-2xl my-auto rounded-3xl border border-white/20 bg-[#061711]/98 text-slate-100 shadow-[0_30px_90px_rgba(0,0,0,0.95),0_0_50px_rgba(216,184,77,0.22)] backdrop-blur-3xl overflow-hidden flex flex-col max-h-[88vh]"
+        className="relative z-10 w-full max-w-2xl my-auto rounded-3xl border border-slate-200/90 dark:border-white/20 bg-white dark:bg-[#061711]/98 text-slate-900 dark:text-slate-100 shadow-[0_20px_70px_rgba(0,0,0,0.12)] dark:shadow-[0_30px_90px_rgba(0,0,0,0.95),0_0_50px_rgba(216,184,77,0.22)] backdrop-blur-3xl overflow-hidden flex flex-col max-h-[88vh]"
       >
         {/* iOS-Style Glass Header */}
-        <div className="flex items-center justify-between border-b border-white/10 px-6 sm:px-7 py-5 bg-gradient-to-b from-white/[0.08] to-black/40 backdrop-blur-2xl shrink-0">
+        <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/10 px-6 sm:px-7 py-5 bg-slate-50 dark:bg-gradient-to-b dark:from-white/[0.08] dark:to-black/40 backdrop-blur-2xl shrink-0">
           <div className="flex items-center gap-3.5">
             <div 
               className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#d8b84d]/40 shadow-lg shrink-0"
@@ -149,21 +149,21 @@ Investigating Officer: Inspector A. Sharma, Cyber Crime PS - I4C`;
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#d8b84d]">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#B45309] dark:text-[#d8b84d]">
                   Entity Dossier
                 </span>
-                <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-950/70 px-2 py-0.5 text-[9px] font-semibold text-emerald-300">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="inline-flex items-center gap-1 rounded-full border border-emerald-300 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-950/70 px-2 py-0.5 text-[9px] font-semibold text-emerald-800 dark:text-emerald-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
                   Sec 65B Certified
                 </span>
               </div>
-              <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">{title}</h2>
+              <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white tracking-tight">{title}</h2>
             </div>
           </div>
           <button 
             type="button" 
             onClick={onClose}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-slate-300 transition hover:bg-white/20 hover:text-white cursor-pointer shadow-sm shrink-0"
+            className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 dark:border-white/15 bg-slate-100 dark:bg-white/10 text-slate-600 dark:text-slate-300 transition hover:bg-slate-200 dark:hover:bg-white/20 hover:text-slate-900 dark:hover:text-white cursor-pointer shadow-sm shrink-0"
             aria-label="Close panel"
           >
             <X size={18} />
@@ -172,8 +172,8 @@ Investigating Officer: Inspector A. Sharma, Cyber Crime PS - I4C`;
 
         {/* Toast Notification */}
         {toastMsg && (
-          <div className="mx-6 mt-3 flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-950/80 px-4 py-2.5 text-xs font-semibold text-emerald-200 shadow-xl animate-in fade-in">
-            <Database size={14} className="text-emerald-400 animate-pulse" />
+          <div className="mx-6 mt-3 flex items-center gap-2 rounded-xl border border-emerald-300 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-950/80 px-4 py-2.5 text-xs font-semibold text-emerald-800 dark:text-emerald-200 shadow-xl animate-in fade-in">
+            <Database size={14} className="text-emerald-600 dark:text-emerald-400 animate-pulse" />
             <span>{toastMsg}</span>
           </div>
         )}
@@ -181,26 +181,26 @@ Investigating Officer: Inspector A. Sharma, Cyber Crime PS - I4C`;
         {/* Scrollable Content */}
         <div className="flex-1 overflow-y-auto px-6 sm:px-7 py-6 space-y-5">
           {/* Address Identifier Box */}
-          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 sm:p-5 shadow-sm">
-            <div className="flex items-center justify-between text-xs text-slate-400 mb-2.5">
-              <span className="flex items-center gap-2 font-medium text-slate-200">
-                <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#d8b84d]/20 text-[#d8b84d]">
+          <div className="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.04] p-4 sm:p-5 shadow-sm">
+            <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 mb-2.5">
+              <span className="flex items-center gap-2 font-medium text-slate-800 dark:text-slate-200">
+                <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#d8b84d]/20 text-[#B45309] dark:text-[#d8b84d]">
                   <Wallet size={14} />
                 </div>
                 Address Identifier
               </span>
-              <span className="rounded-lg border border-white/10 bg-black/40 px-3 py-1 text-xs text-slate-300 font-mono">
+              <span className="rounded-lg border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-black/40 px-3 py-1 text-xs text-slate-700 dark:text-slate-300 font-mono">
                 {chainName}
               </span>
             </div>
-            <div className="flex items-center justify-between gap-3 rounded-xl border border-white/5 bg-black/60 px-4 py-3 font-mono text-xs text-slate-200">
-              <span className="truncate select-all text-xs sm:text-sm font-semibold text-white">{address}</span>
+            <div className="flex items-center justify-between gap-3 rounded-xl border border-slate-200/80 dark:border-white/5 bg-slate-100/90 dark:bg-black/60 px-4 py-3 font-mono text-xs text-slate-800 dark:text-slate-200">
+              <span className="truncate select-all text-xs sm:text-sm font-semibold text-slate-900 dark:text-white">{address}</span>
               <button
                 type="button"
                 onClick={copyAddress}
-                className="flex shrink-0 items-center gap-1.5 rounded-lg border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-medium text-slate-200 hover:bg-white/20 hover:text-white transition cursor-pointer"
+                className="flex shrink-0 items-center gap-1.5 rounded-lg border border-slate-200 dark:border-white/15 bg-white dark:bg-white/10 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-white/20 hover:text-slate-900 dark:hover:text-white transition cursor-pointer shadow-sm"
               >
-                {copied ? <Check size={13} className="text-emerald-400" /> : <Copy size={13} />}
+                {copied ? <Check size={13} className="text-emerald-600 dark:text-emerald-400" /> : <Copy size={13} />}
                 {copied ? "Copied" : "Copy"}
               </button>
             </div>
@@ -208,100 +208,92 @@ Investigating Officer: Inspector A. Sharma, Cyber Crime PS - I4C`;
 
           {/* Key Metrics Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 shadow-sm">
-              <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Traced Volume</span>
-              <div className="mt-2 text-xl sm:text-2xl font-bold text-white font-mono">
+            <div className="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.04] p-5 shadow-sm">
+              <span className="text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Traced Volume</span>
+              <div className="mt-2 text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-mono">
                 {Number(balance).toLocaleString()} USDT
               </div>
-              <div className="text-xs font-semibold text-emerald-400 mt-1">
+              <div className="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mt-1">
                 ≈ ₹{inrValue.toLocaleString()} INR
               </div>
             </div>
 
-            <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 shadow-sm">
-              <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Risk Assessment</span>
+            <div className="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.04] p-5 shadow-sm">
+              <span className="text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Risk Assessment</span>
               <div className="mt-2 flex items-center gap-2">
-                <span className="text-xl sm:text-2xl font-bold text-amber-400 font-mono">{riskScore}/100</span>
-                <span className="rounded-full bg-amber-500/15 px-2.5 py-0.5 text-[11px] font-bold text-amber-300 border border-amber-500/30">
+                <span className="text-xl sm:text-2xl font-bold text-amber-600 dark:text-amber-400 font-mono">{riskScore}/100</span>
+                <span className="rounded-full bg-amber-100 dark:bg-amber-500/15 px-2.5 py-0.5 text-[11px] font-bold text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-500/30">
                   {riskScore >= 90 ? "CRITICAL" : "HIGH"}
                 </span>
               </div>
-              <div className="text-xs text-slate-400 mt-1">Mule Layering Detected</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">Mule Layering Detected</div>
             </div>
           </div>
 
           {/* Entity Typology Badge */}
-          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5 shadow-sm">
-            <span className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Entity Typology</span>
+          <div className="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.04] p-5 shadow-sm">
+            <span className="text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">Entity Typology</span>
             <div className="mt-3 flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-xl border border-[#d8b84d]/40 bg-[#d8b84d]/15 px-3 py-1.5 text-xs font-semibold text-[#d8b84d]">
+              <span className="inline-flex items-center gap-1.5 rounded-xl border border-amber-300 dark:border-[#d8b84d]/40 bg-amber-100 dark:bg-[#d8b84d]/15 px-3 py-1.5 text-xs font-semibold text-amber-800 dark:text-[#d8b84d]">
                 <ShieldAlert size={14} /> {entityType}
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-xl border border-cyan-500/30 bg-cyan-950/50 px-3 py-1.5 text-xs text-cyan-300 font-mono">
+              <span className="inline-flex items-center gap-1.5 rounded-xl border border-cyan-300 dark:border-cyan-500/30 bg-cyan-100 dark:bg-cyan-950/50 px-3 py-1.5 text-xs text-cyan-800 dark:text-cyan-300 font-mono">
                 <Layers size={14} /> Peel Chain Pattern
               </span>
-              <span className="inline-flex items-center gap-1.5 rounded-xl border border-purple-500/30 bg-purple-950/50 px-3 py-1.5 text-xs text-purple-300">
+              <span className="inline-flex items-center gap-1.5 rounded-xl border border-purple-300 dark:border-purple-500/30 bg-purple-100 dark:bg-purple-950/50 px-3 py-1.5 text-xs text-purple-800 dark:text-purple-300">
                 <Zap size={14} /> Instant Sweep Bot
               </span>
             </div>
-            <p className="mt-3 text-xs leading-relaxed text-slate-300">
+            <p className="mt-3 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
               {entity.audit_notes || "Continuous on-chain graph analysis classifies this node as an automated layering mule utilized for aggregating victim funds before multi-hop VASP deposit."}
             </p>
           </div>
 
-          {/* On-Chain Audit Metadata */}
-          <div className="rounded-2xl border border-white/10 bg-black/40 p-5 space-y-3.5 text-xs shadow-inner">
+          {/* Audit Trail Context Box */}
+          <div className="rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/[0.03] p-4 text-xs space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-slate-400">Timestamp (IST)</span>
-              <span className="font-mono text-slate-200">{firstSeen}</span>
+              <span className="text-slate-500 dark:text-slate-400">Ledger Block Height</span>
+              <span className="font-mono text-slate-800 dark:text-slate-200">#{blockNum.toLocaleString()}</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-slate-400">Block Height</span>
-              <span className="font-mono text-slate-200">#{blockNum.toLocaleString()}</span>
+              <span className="text-slate-500 dark:text-slate-400">Gas Dispersed</span>
+              <span className="font-mono text-slate-800 dark:text-slate-200">{entity.gas_fee || "0.0012 MATIC"}</span>
             </div>
-            <div className="flex items-center justify-between">
-              <span className="text-slate-400">Gas Dispersed</span>
-              <span className="font-mono text-slate-200">{entity.gas_fee || "0.0012 MATIC"}</span>
-            </div>
-            <div className="pt-2.5 border-t border-white/5 flex items-center justify-between">
-              <span className="text-slate-400">Transaction Hash</span>
-              <span className="font-mono text-xs text-cyan-400 truncate max-w-[260px]" title={txHash}>
+            <div className="pt-2.5 border-t border-slate-200 dark:border-white/5 flex items-center justify-between">
+              <span className="text-slate-500 dark:text-slate-400">Transaction Hash</span>
+              <span className="font-mono text-xs text-cyan-700 dark:text-cyan-400 truncate max-w-[260px]" title={txHash}>
                 {txHash.slice(0, 14)}...{txHash.slice(-10)}
               </span>
             </div>
           </div>
 
-          {/* Direct Actions with Supabase Persistence */}
+          {/* Direct Actions with Supabase Persistence (Rolex Gradient Style) */}
           <div className="space-y-3 pt-2">
             <button
               type="button"
               onClick={handleGenerateNotice}
-              className="flex w-full items-center justify-center gap-2 rounded-xl py-3.5 px-5 text-xs font-bold text-[#0f1a0a] transition hover:brightness-110 shadow-xl cursor-pointer"
-              style={{ 
-                background: "linear-gradient(180deg, #e5c96a 0%, #d8b84d 100%)",
-                boxShadow: "0 6px 20px rgba(216, 184, 77, 0.35)"
-              }}
+              className="rolex-gold-btn flex w-full items-center justify-center gap-2 rounded-xl py-3.5 px-5 text-xs font-extrabold cursor-pointer"
             >
-              <FileText size={16} />
-              {noticeGenerated ? "Section 91 Notice Generated & Saved!" : "Issue Section 91 Preservation Notice"}
+              <FileText size={16} className="text-[#150F00]" />
+              <span className="text-[#150F00]">{noticeGenerated ? "Section 91 Notice Generated & Saved!" : "Issue Section 91 Preservation Notice"}</span>
             </button>
 
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
                 onClick={handleAddToWatchlist}
-                className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-3 px-4 text-xs font-semibold text-slate-200 hover:bg-white/10 hover:border-white/25 transition cursor-pointer"
+                className="rolex-green-btn flex items-center justify-center gap-2 rounded-xl py-3 px-4 text-xs font-extrabold cursor-pointer text-white"
               >
-                <Shield size={14} className="text-[#d8b84d]" />
-                {watchlistAdded ? "Saved to Supabase" : "Add to Watchlist"}
+                <Shield size={14} className="text-white" />
+                <span className="text-white font-extrabold">{watchlistAdded ? "Saved to Supabase" : "Add to Watchlist"}</span>
               </button>
               <a
                 href={`https://polygonscan.com/address/${address}`}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-3 px-4 text-xs font-semibold text-slate-200 hover:bg-white/10 hover:border-white/25 transition cursor-pointer"
+                className="flex items-center justify-center gap-2 rounded-xl border border-slate-200 dark:border-white/15 bg-slate-100 dark:bg-white/5 py-3 px-4 text-xs font-bold text-slate-800 dark:text-slate-200 hover:border-[#E5B83B]/50 hover:text-[#E5B83B] transition cursor-pointer shadow-sm"
               >
-                <ExternalLink size={14} className="text-slate-400" />
+                <ExternalLink size={14} className="text-slate-500 dark:text-slate-400" />
                 Explorer Link
               </a>
             </div>
@@ -309,11 +301,11 @@ Investigating Officer: Inspector A. Sharma, Cyber Crime PS - I4C`;
         </div>
 
         {/* Footer */}
-        <div className="border-t border-white/10 bg-black/60 px-6 sm:px-7 py-3.5 text-xs text-slate-400 flex items-center justify-between shrink-0">
+        <div className="border-t border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-black/60 px-6 sm:px-7 py-3.5 text-xs text-slate-600 dark:text-slate-400 flex items-center justify-between shrink-0">
           <span className="flex items-center gap-2">
-            <Database size={13} className="text-emerald-400" /> Supabase Synced
+            <Database size={13} className="text-emerald-600 dark:text-emerald-400" /> Supabase Synced
           </span>
-          <span className="font-mono text-emerald-300 font-semibold text-xs">STATUS: 65B READY</span>
+          <span className="font-mono text-emerald-700 dark:text-emerald-300 font-semibold text-xs">STATUS: 65B READY</span>
         </div>
       </motion.div>
     </div>

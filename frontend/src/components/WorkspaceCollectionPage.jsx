@@ -270,21 +270,21 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
   return (
     <div className="w-full space-y-6 animate-in fade-in duration-300">
       {/* ── Page Hero Header ── */}
-      <div className="rounded-3xl border border-white/15 bg-gradient-to-r from-[#071a11]/90 via-[#061711]/90 to-[#0d2a1c]/90 p-6 sm:p-8 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)]">
+      <div className="glass-panel rounded-3xl border border-slate-200/90 dark:border-white/15 p-6 sm:p-8 backdrop-blur-2xl shadow-xl">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
           <div className="space-y-2">
-            <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#d8b84d]">
-              <Database size={14} /> 
+            <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-emerald-800 dark:text-[#d8b84d]">
+              <Database size={14} className="text-emerald-600 dark:text-[#d8b84d]" /> 
               <span>{isWatchlist ? "Autonomous 24/7 RPC Surveillance Network" : "Statutory Judicial Trail & FIR Records"}</span>
-              <span className="inline-flex items-center gap-1 rounded-full bg-emerald-950/70 border border-emerald-500/30 px-2 py-0.5 text-[9px] font-bold text-emerald-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="mempool-status inline-flex items-center gap-1 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-500/30 px-2 py-0.5 text-[9px] font-bold text-emerald-700 dark:text-emerald-400">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
                 Mempool Connected
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
               {isWatchlist ? "Live Watchlist & Surveillance Loop" : "Legal Dossier & Section 91 Directives"}
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
               {isWatchlist
                 ? "Continuous cryptographic surveillance across 12 blockchain networks. Automatically detects peel-chain splits, pre-VASP aggregations, and rapid layering movements with sub-second RPC alerts."
                 : "Standardized Section 94 BNSS / Section 91 CrPC judicial dossiers with cryptographic hash trees, ready for direct production before Special Cyber Courts."}
@@ -295,10 +295,10 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
             <button
               type="button"
               onClick={loadData}
-              className="flex items-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-xs font-semibold text-slate-200 hover:bg-white/10 hover:border-white/25 transition shadow-sm cursor-pointer"
+              className="flex items-center gap-2 rounded-2xl border border-slate-200 dark:border-white/15 bg-white dark:bg-white/5 px-4 py-3 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/10 hover:border-slate-300 dark:hover:border-white/25 transition shadow-sm cursor-pointer"
               title="Refresh and sync with Supabase"
             >
-              <RefreshCw size={14} className={loading ? "animate-spin text-[#d8b84d]" : "text-slate-400"} />
+              <RefreshCw size={14} className={loading ? "animate-spin text-emerald-600 dark:text-[#d8b84d]" : "text-slate-500 dark:text-slate-400"} />
               <span>Sync Network</span>
             </button>
 
@@ -306,13 +306,10 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
               <button
                 type="button"
                 onClick={() => setIsAddModalOpen(true)}
-                className="flex items-center gap-2.5 rounded-2xl px-6 py-3 text-xs font-bold text-[#08160c] transition hover:brightness-110 shadow-[0_4px_20px_rgba(216,184,77,0.35)] cursor-pointer"
-                style={{ 
-                  background: "linear-gradient(180deg, #e5c96a 0%, #d8b84d 100%)",
-                }}
+                className="rolex-gold-btn flex items-center gap-2.5 rounded-2xl px-6 py-3 text-xs font-extrabold cursor-pointer"
               >
-                <Plus size={16} strokeWidth={2.5} />
-                <span>Add Suspect Wallet</span>
+                <Plus size={16} strokeWidth={2.5} className="text-[#150F00]" />
+                <span className="text-[#150F00]">Add Suspect Wallet</span>
               </button>
             )}
           </div>
@@ -320,8 +317,8 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
 
         {/* Status Toast */}
         {toastMsg && (
-          <div className="mt-4 flex items-center gap-2.5 rounded-2xl border border-emerald-500/30 bg-emerald-950/80 px-4 py-2.5 text-xs font-semibold text-emerald-200 shadow-xl animate-in fade-in">
-            <CheckCircle2 size={15} className="text-emerald-400" />
+          <div className="mt-4 flex items-center gap-2.5 rounded-2xl border border-emerald-500/30 bg-emerald-50 dark:bg-emerald-950/80 px-4 py-2.5 text-xs font-semibold text-emerald-800 dark:text-emerald-200 shadow-xl animate-in fade-in">
+            <CheckCircle2 size={15} className="text-emerald-600 dark:text-emerald-400" />
             <span>{toastMsg}</span>
           </div>
         )}
@@ -329,65 +326,65 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
 
       {/* ── Key Stat Metrics Row ── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="rounded-3xl border border-white/15 bg-[#061711]/90 p-5 backdrop-blur-2xl shadow-xl">
+        <div className="glass-panel rounded-3xl border border-slate-200/90 dark:border-white/15 p-5 backdrop-blur-2xl shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] uppercase font-bold text-slate-400 tracking-wider">
+            <span className="text-[11px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider">
               {isWatchlist ? "Monitored Targets" : "Active Case Dossiers"}
             </span>
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#d8b84d]/15 text-[#d8b84d] border border-[#d8b84d]/30">
+            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-slate-100 text-slate-700 border border-slate-200 dark:bg-[#d8b84d]/15 dark:text-[#d8b84d] dark:border-[#d8b84d]/30">
               {isWatchlist ? <Shield size={16} /> : <FileText size={16} />}
             </div>
           </div>
-          <div className="mt-3 text-3xl font-extrabold text-white font-mono">
+          <div className="mt-3 text-3xl font-extrabold text-slate-900 dark:text-white font-mono">
             {isWatchlist ? watchlist.length : dossiers.length}
           </div>
-          <div className="mt-2 flex items-center gap-1.5 text-[11px] text-emerald-400 font-medium">
-            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="mt-2 flex items-center gap-1.5 text-[11px] text-emerald-700 dark:text-emerald-400 font-medium">
+            <span className="h-2 w-2 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse" />
             <span>24/7 RPC Surveillance Active</span>
           </div>
         </div>
 
-        <div className="rounded-3xl border border-white/15 bg-[#061711]/90 p-5 backdrop-blur-2xl shadow-xl">
+        <div className="glass-panel rounded-3xl border border-slate-200/90 dark:border-white/15 p-5 backdrop-blur-2xl shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] uppercase font-bold text-slate-400 tracking-wider">Total Traced Value</span>
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+            <span className="text-[11px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider">Total Traced Value</span>
+            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-emerald-500/15 dark:text-emerald-400 dark:border-emerald-500/30">
               <Wallet size={16} />
             </div>
           </div>
-          <div className="mt-3 text-2xl font-extrabold text-emerald-300 font-mono">
-            ₹{(totalWatchlistINR / 100000).toFixed(2)} Lakh
+          <div className="mt-3 text-2xl font-extrabold text-slate-900 dark:text-white font-mono">
+            ₹{(totalWatchlistINR / 100000).toFixed(2)} <span className="text-sm font-bold text-emerald-700 dark:text-emerald-400">Lakh</span>
           </div>
-          <div className="mt-2 text-[11px] text-slate-400 font-mono">
+          <div className="mt-2 text-[11px] text-slate-500 dark:text-slate-400 font-mono">
             ≈ ${(totalWatchlistINR / 89).toLocaleString(undefined, { maximumFractionDigits: 0 })} USDT
           </div>
         </div>
 
-        <div className="rounded-3xl border border-white/15 bg-[#061711]/90 p-5 backdrop-blur-2xl shadow-xl">
+        <div className="glass-panel rounded-3xl border border-slate-200/90 dark:border-white/15 p-5 backdrop-blur-2xl shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] uppercase font-bold text-slate-400 tracking-wider">Risk Classification</span>
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-500/15 text-amber-400 border border-amber-500/30">
+            <span className="text-[11px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider">Risk Classification</span>
+            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-rose-50 text-rose-700 border border-rose-200 dark:bg-amber-500/15 dark:text-amber-400 dark:border-amber-500/30">
               <AlertTriangle size={16} />
             </div>
           </div>
-          <div className="mt-3 text-2xl font-extrabold text-amber-400 font-mono">
+          <div className="mt-3 text-2xl font-extrabold text-rose-700 dark:text-amber-400 font-mono">
             CRITICAL (95%)
           </div>
-          <div className="mt-2 text-[11px] text-slate-400">
+          <div className="mt-2 text-[11px] text-slate-500 dark:text-slate-400">
             Multi-hop VASP deposit risk detected
           </div>
         </div>
 
-        <div className="rounded-3xl border border-white/15 bg-[#061711]/90 p-5 backdrop-blur-2xl shadow-xl">
+        <div className="glass-panel rounded-3xl border border-slate-200/90 dark:border-white/15 p-5 backdrop-blur-2xl shadow-sm">
           <div className="flex items-center justify-between">
-            <span className="text-[11px] uppercase font-bold text-slate-400 tracking-wider">Preservation SLA</span>
-            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-cyan-500/15 text-cyan-400 border border-cyan-500/30">
+            <span className="text-[11px] uppercase font-bold text-slate-500 dark:text-slate-400 tracking-wider">Preservation SLA</span>
+            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-sky-50 text-sky-700 border border-sky-200 dark:bg-cyan-500/15 dark:text-cyan-400 dark:border-cyan-500/30">
               <Clock3 size={16} />
             </div>
           </div>
-          <div className="mt-3 text-2xl font-extrabold text-white font-mono">
+          <div className="mt-3 text-2xl font-extrabold text-slate-900 dark:text-white font-mono">
             &lt; 4 Hours
           </div>
-          <div className="mt-2 text-[11px] text-cyan-300 font-medium">
+          <div className="mt-2 text-[11px] text-slate-500 dark:text-cyan-300 font-medium">
             Within Section 91 Legal Freeze Window
           </div>
         </div>
@@ -395,24 +392,24 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
 
       {/* ── Surveillance Queue & Filters Bar ── */}
       {isWatchlist ? (
-        <div className="rounded-3xl border border-white/15 bg-[#061711]/95 backdrop-blur-3xl shadow-2xl p-6 sm:p-8 space-y-6">
+        <div className="glass-panel rounded-3xl border border-slate-200/90 dark:border-white/15 backdrop-blur-3xl shadow-sm p-6 sm:p-8 space-y-6">
           {/* Controls Bar: Search + Chain Filters + Risk Filters + View Toggle */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-white/10 pb-6">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-200 dark:border-white/10 pb-6">
             {/* Search Input */}
             <div className="relative flex-1 max-w-md">
-              <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#d8b84d]" />
+              <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-[#d8b84d]" />
               <input
                 type="text"
                 placeholder="Filter by address, entity label, or case note..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full rounded-2xl border border-white/15 bg-black/60 pl-11 pr-4 py-3 text-xs text-white placeholder:text-slate-500 outline-none focus:border-[#d8b84d] focus:ring-1 focus:ring-[#d8b84d]/30 transition"
+                className="w-full rounded-2xl border border-slate-200 dark:border-white/15 bg-slate-50 dark:bg-black/60 pl-11 pr-4 py-3 text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 outline-none focus:border-slate-400 dark:focus:border-[#d8b84d] focus:ring-1 focus:ring-slate-400/30 transition"
               />
               {searchQuery && (
                 <button
                   type="button"
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-white text-xs cursor-pointer"
                 >
                   Clear
                 </button>
@@ -422,16 +419,16 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
             {/* Filter Pills */}
             <div className="flex flex-wrap items-center gap-2.5">
               {/* Chain selector */}
-              <div className="flex items-center rounded-2xl border border-white/15 bg-black/50 p-1">
+              <div className="flex items-center rounded-2xl border border-slate-200 dark:border-white/15 bg-slate-100/90 dark:bg-white/5 p-1 shadow-sm">
                 {["ALL", "Polygon", "Tron", "Ethereum", "Bitcoin"].map((chain) => (
                   <button
                     key={chain}
                     type="button"
                     onClick={() => setSelectedChain(chain)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
                       selectedChain === chain
-                        ? "bg-[#d8b84d] text-black shadow-md"
-                        : "text-slate-400 hover:text-white"
+                        ? "bg-[#059669] text-white shadow-sm dark:bg-[#E5B83B] dark:text-[#150F00]"
+                        : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                     }`}
                   >
                     {chain}
@@ -440,16 +437,16 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
               </div>
 
               {/* Risk selector */}
-              <div className="flex items-center rounded-2xl border border-white/15 bg-black/50 p-1">
+              <div className="flex items-center rounded-2xl border border-slate-200 dark:border-white/15 bg-slate-100/90 dark:bg-white/5 p-1 shadow-sm">
                 {["ALL", "CRITICAL", "HIGH"].map((risk) => (
                   <button
                     key={risk}
                     type="button"
                     onClick={() => setSelectedRisk(risk)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
                       selectedRisk === risk
-                        ? "bg-amber-500/20 text-amber-300 border border-amber-500/40"
-                        : "text-slate-400 hover:text-white"
+                        ? "bg-[#059669] text-white shadow-sm dark:bg-[#E5B83B] dark:text-[#150F00]"
+                        : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                     }`}
                   >
                     {risk}
@@ -458,12 +455,12 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
               </div>
 
               {/* View Toggle */}
-              <div className="hidden sm:flex items-center rounded-2xl border border-white/15 bg-black/50 p-1">
+              <div className="hidden sm:flex items-center rounded-2xl border border-slate-200 dark:border-white/15 bg-slate-100/90 dark:bg-white/5 p-1 shadow-sm">
                 <button
                   type="button"
                   onClick={() => setViewMode("grid")}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
-                    viewMode === "grid" ? "bg-white/15 text-white" : "text-slate-400 hover:text-white"
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    viewMode === "grid" ? "bg-white dark:bg-white/15 text-slate-900 dark:text-white shadow-sm border border-slate-200/80 dark:border-white/10" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                   }`}
                   title="Card Grid View"
                 >
@@ -472,10 +469,10 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
                 <button
                   type="button"
                   onClick={() => setViewMode("table")}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition ${
-                    viewMode === "table" ? "bg-white/15 text-white" : "text-slate-400 hover:text-white"
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
+                    viewMode === "table" ? "bg-white dark:bg-white/15 text-slate-900 dark:text-white shadow-sm border border-slate-200/80 dark:border-white/10" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                   }`}
-                  title="Dense Table View"
+                  title="Table Ledger View"
                 >
                   Table
                 </button>
@@ -501,19 +498,19 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
                 <div
                   key={item.id || item.address}
                   onClick={() => setSelectedEntity(item)}
-                  className="group relative rounded-3xl border border-white/15 bg-white/[0.04] p-6 hover:bg-white/[0.07] hover:border-[#d8b84d]/50 transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.7)]"
+                  className="group relative rounded-3xl border border-slate-200/90 dark:border-white/15 bg-white/90 dark:bg-white/[0.04] p-6 hover:bg-white dark:hover:bg-white/[0.07] hover:border-[#d8b84d]/60 dark:hover:border-[#d8b84d]/50 transition-all duration-200 cursor-pointer flex flex-col justify-between shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] dark:hover:shadow-[0_15px_40px_rgba(0,0,0,0.7)]"
                 >
                   <div className="space-y-4">
                     {/* Card Top: Chain + Status + Trash */}
                     <div className="flex items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="inline-flex items-center gap-1.5 rounded-xl bg-[#d8b84d]/15 px-3 py-1 text-xs font-bold text-[#d8b84d] border border-[#d8b84d]/30">
+                        <span className="inline-flex items-center gap-1.5 rounded-xl bg-[#d8b84d]/20 dark:bg-[#d8b84d]/15 px-3 py-1 text-xs font-bold text-[#B45309] dark:text-[#d8b84d] border border-[#d8b84d]/40 dark:border-[#d8b84d]/30">
                           {item.chain || "Polygon PoS"}
                         </span>
                         <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-bold border ${
                           (item.risk_score || 95) >= 90
-                            ? "bg-rose-950/70 border-rose-500/40 text-rose-300"
-                            : "bg-amber-950/70 border-amber-500/40 text-amber-300"
+                            ? "bg-rose-100 dark:bg-rose-950/70 border-rose-200 dark:border-rose-500/40 text-rose-800 dark:text-rose-300"
+                            : "bg-amber-100 dark:bg-amber-950/70 border-amber-200 dark:border-amber-500/40 text-amber-800 dark:text-amber-300"
                         }`}>
                           <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
                           {item.risk_score || 95}/100 Risk
@@ -523,7 +520,7 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
                       <button
                         type="button"
                         onClick={(e) => handleRemoveWatchlist(item.id, e)}
-                        className="flex h-8 w-8 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-400 hover:border-rose-500/40 hover:bg-rose-950/60 hover:text-rose-300 transition cursor-pointer"
+                        className="flex h-8 w-8 items-center justify-center rounded-xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400 hover:border-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/60 hover:text-rose-600 dark:hover:text-rose-300 transition cursor-pointer"
                         title="Remove from surveillance"
                       >
                         <Trash2 size={14} />
@@ -533,33 +530,33 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
                     {/* Entity Title & Typology */}
                     <div>
                       <div className="flex items-center justify-between">
-                        <h3 className="text-base font-bold text-white group-hover:text-[#d8b84d] transition truncate">
+                        <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-[#B45309] dark:group-hover:text-[#d8b84d] transition truncate">
                           {item.label}
                         </h3>
                       </div>
-                      <span className="inline-block mt-1 text-[11px] font-semibold text-cyan-300">
+                      <span className="inline-block mt-1 text-[11px] font-semibold text-cyan-700 dark:text-cyan-300">
                         {item.typology || "Suspect Layering Mule"}
                       </span>
                     </div>
 
                     {/* Address Identifier Box */}
-                    <div className="flex items-center justify-between gap-2 rounded-2xl border border-white/10 bg-black/60 px-3.5 py-2.5 font-mono text-xs text-slate-200">
+                    <div className="flex items-center justify-between gap-2 rounded-2xl border border-slate-200 dark:border-white/10 bg-slate-100/90 dark:bg-black/60 px-3.5 py-2.5 font-mono text-xs text-slate-800 dark:text-slate-200">
                       <span className="truncate select-all">{item.address}</span>
                       <div className="flex items-center gap-1.5 shrink-0">
                         <button
                           type="button"
                           onClick={(e) => copyToClipboard(item.address, item.id, e)}
-                          className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 transition cursor-pointer"
+                          className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-200/80 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 text-slate-700 dark:text-slate-300 transition cursor-pointer"
                           title="Copy address"
                         >
-                          {copiedId === item.id ? <Check size={13} className="text-emerald-400" /> : <Copy size={13} />}
+                          {copiedId === item.id ? <Check size={13} className="text-emerald-600 dark:text-emerald-400" /> : <Copy size={13} />}
                         </button>
                         <a
                           href={`https://polygonscan.com/address/${item.address}`}
                           target="_blank"
                           rel="noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 transition"
+                          className="flex h-7 w-7 items-center justify-center rounded-lg bg-slate-200/80 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 text-slate-700 dark:text-slate-300 transition"
                           title="View on Explorer"
                         >
                           <ExternalLink size={13} />
@@ -568,35 +565,35 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
                     </div>
 
                     {/* Traced Illicit Value */}
-                    <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-3 flex items-center justify-between">
+                    <div className="rounded-2xl border border-slate-200/80 dark:border-white/5 bg-slate-50/80 dark:bg-white/[0.02] p-3 flex items-center justify-between">
                       <div>
                         <span className="text-[10px] uppercase font-bold text-slate-500">Traced Volume</span>
-                        <div className="text-sm font-bold text-white font-mono">
+                        <div className="text-sm font-bold text-slate-900 dark:text-white font-mono">
                           {item.value_usdt ? `${Number(item.value_usdt).toLocaleString()} USDT` : "48,920 USDT"}
                         </div>
                       </div>
                       <div className="text-right">
                         <span className="text-[10px] uppercase font-bold text-slate-500">INR Valuation</span>
-                        <div className="text-sm font-bold text-emerald-400 font-mono">
+                        <div className="text-sm font-bold text-emerald-600 dark:text-emerald-400 font-mono">
                           ₹{item.value_inr ? item.value_inr.toLocaleString() : (48920 * 89).toLocaleString()} INR
                         </div>
                       </div>
                     </div>
 
                     {/* Reason Context */}
-                    <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
                       {item.reason}
                     </p>
                   </div>
 
                   {/* Card Bottom: Hop & Action */}
-                  <div className="mt-5 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
-                    <span className="text-slate-400 flex items-center gap-1.5 font-mono text-[11px]">
+                  <div className="mt-5 pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between text-xs">
+                    <span className="text-slate-500 dark:text-slate-400 flex items-center gap-1.5 font-mono text-[11px]">
                       <Clock3 size={13} className="text-slate-400" />
                       {item.last_active ? `Active ${item.last_active}` : "Active RPC Sync"}
                     </span>
 
-                    <span className="text-[#d8b84d] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    <span className="text-[#B45309] dark:text-[#d8b84d] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
                       Inspect Dossier <ChevronRight size={15} />
                     </span>
                   </div>
@@ -670,13 +667,13 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
         </div>
       ) : (
         /* ── Statutory Legal Dossiers View ── */
-        <div className="rounded-3xl border border-white/15 bg-[#061711]/95 backdrop-blur-3xl shadow-2xl p-6 sm:p-8 space-y-5">
-          <div className="flex items-center justify-between border-b border-white/10 pb-4">
+        <div className="glass-panel rounded-3xl border border-slate-200/90 dark:border-white/15 backdrop-blur-3xl shadow-2xl p-6 sm:p-8 space-y-5">
+          <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-4">
             <div>
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <FileText size={20} className="text-[#d8b84d]" /> Statutory Legal Dossiers ({dossiers.length})
+              <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <FileText size={20} className="text-[#B45309] dark:text-[#d8b84d]" /> Statutory Legal Dossiers ({dossiers.length})
               </h2>
-              <span className="text-xs text-slate-400">Section 94 BNSS / Section 91 CrPC Certified Production Packets</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400">Section 94 BNSS / Section 91 CrPC Certified Production Packets</span>
             </div>
           </div>
 
@@ -692,38 +689,39 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
                   risk_score: 95,
                   audit_notes: `Legal Dossier Ref: ${dos.case_ref}. Attributed to ${dos.target_vasp} with ${dos.confidence} confidence.`,
                 })}
-                className="rounded-3xl border border-white/15 bg-white/[0.03] p-6 hover:bg-white/[0.06] hover:border-[#d8b84d]/50 transition cursor-pointer flex flex-col md:flex-row md:items-center md:justify-between gap-5 shadow-lg"
+                className="rounded-3xl border border-slate-200/90 dark:border-white/15 bg-white/90 dark:bg-white/[0.03] p-6 hover:bg-white dark:hover:bg-white/[0.06] hover:border-[#d8b84d]/60 dark:hover:border-[#d8b84d]/50 transition cursor-pointer flex flex-col md:flex-row md:items-center md:justify-between gap-5 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-lg"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#d8b84d]/15 text-[#d8b84d] border border-[#d8b84d]/30">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#d8b84d]/15 text-[#B45309] dark:text-[#d8b84d] border border-[#d8b84d]/30">
                     <FileText size={22} />
                   </div>
                   <div className="space-y-1">
                     <div className="flex items-center gap-2.5">
-                      <span className="font-mono text-xs font-bold text-[#d8b84d]">
+                      <span className="font-mono text-xs font-bold text-[#B45309] dark:text-[#d8b84d]">
                         {dos.case_ref}
                       </span>
-                      <span className="rounded-full bg-emerald-950/70 border border-emerald-500/30 px-2.5 py-0.5 text-[10px] font-bold text-emerald-300">
-                        {dos.status}
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/70 border border-emerald-300 dark:border-emerald-500/30 px-2.5 py-0.5 text-[10px] font-bold text-emerald-800 dark:text-emerald-300 shadow-sm">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse" />
+                        {dos.status ? String(dos.status).replace(/_/g, " ") : "NOTICE ISSUED"}
                       </span>
                     </div>
-                    <strong className="block text-base font-bold text-white">{dos.title}</strong>
-                    <div className="flex flex-wrap gap-4 text-xs text-slate-300 pt-1">
-                      <span>Target VASP: <b className="text-[#d8b84d]">{dos.target_vasp}</b></span>
-                      <span>Deposit Endpoint: <b className="font-mono text-slate-200">{dos.deposit_address?.slice(0, 14)}...</b></span>
-                      <span>Investigating Officer: <b className="text-slate-200">{dos.io_name}</b></span>
+                    <strong className="block text-base font-bold text-slate-900 dark:text-white">{dos.title}</strong>
+                    <div className="flex flex-wrap gap-4 text-xs text-slate-600 dark:text-slate-300 pt-1">
+                      <span>Target VASP: <b className="text-[#B45309] dark:text-[#d8b84d]">{dos.target_vasp}</b></span>
+                      <span>Deposit Endpoint: <b className="font-mono text-slate-800 dark:text-slate-200">{dos.deposit_address?.slice(0, 14)}...</b></span>
+                      <span>Investigating Officer: <b className="text-slate-800 dark:text-slate-200">{dos.io_name}</b></span>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between md:flex-col md:items-end gap-1.5 shrink-0 border-t md:border-t-0 border-white/5 pt-3 md:pt-0">
-                  <div className="text-lg font-bold text-white font-mono">
+                <div className="flex items-center justify-between md:flex-col md:items-end gap-1.5 shrink-0 border-t md:border-t-0 border-slate-200 dark:border-white/5 pt-3 md:pt-0">
+                  <div className="text-lg font-bold text-slate-900 dark:text-white font-mono">
                     {dos.total_traced_usdt?.toLocaleString()} USDT
                   </div>
-                  <div className="text-xs font-semibold text-emerald-400">
+                  <div className="text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                     ≈ ₹{dos.total_traced_inr?.toLocaleString()} INR
                   </div>
-                  <span className="text-[11px] text-slate-500 font-mono">
+                  <span className="text-[11px] text-slate-400 dark:text-slate-500 font-mono">
                     Issued: {new Date(dos.created_at).toLocaleDateString("en-IN")}
                   </span>
                 </div>
@@ -888,14 +886,10 @@ export function WorkspaceCollectionPage({ view, graph, onNavigate }) {
                 </button>
                 <button
                   type="submit"
-                  className="flex items-center gap-2 rounded-2xl px-6 py-3 font-bold text-black transition hover:brightness-110 shadow-xl cursor-pointer"
-                  style={{ 
-                    background: "linear-gradient(180deg, #e5c96a 0%, #d8b84d 100%)",
-                    boxShadow: "0 4px 18px rgba(216, 184, 77, 0.4)"
-                  }}
+                  className="rolex-gold-btn flex items-center gap-2 rounded-2xl px-6 py-3 text-xs font-extrabold cursor-pointer"
                 >
-                  <Plus size={16} strokeWidth={2.5} />
-                  <span>Start 24/7 Surveillance</span>
+                  <Plus size={16} strokeWidth={2.5} className="text-[#150F00]" />
+                  <span className="text-[#150F00]">Start 24/7 Surveillance</span>
                 </button>
               </div>
             </form>

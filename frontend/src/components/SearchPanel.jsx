@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Activity, Eye, Loader2, Search, Sparkles, Zap, CheckCircle2 } from "lucide-react";
 import Compose from "./ui/Compose.jsx";
 
@@ -105,10 +105,10 @@ export default function SearchPanel({ onTrace, loading }) {
                   setChain(item.id);
                   setAutoDetectedChain(item.id);
                 }}
-                className={`relative rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 flex items-center gap-2 ${
+                className={`relative rounded-xl px-3 py-2 text-xs font-semibold transition-all duration-200 flex items-center gap-2 cursor-pointer ${
                   isSelected
-                    ? "bg-[#d8b84d]/20 text-[#d8b84d] border-2 border-[#d8b84d] shadow-[0_0_15px_rgba(216,184,77,0.3)] scale-[1.02]"
-                    : "bg-white/5 text-slate-400 hover:bg-white/10 hover:text-slate-200 border border-white/10"
+                    ? "bg-[#E5B83B]/20 text-[#B45309] dark:text-[#FFE28A] border-2 border-[#E5B83B] shadow-[0_0_15px_rgba(229,184,59,0.35)] scale-[1.02]"
+                    : "bg-slate-100/90 dark:bg-white/5 text-slate-700 dark:text-slate-300 hover:bg-slate-200/90 dark:hover:bg-white/10 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/10 shadow-sm"
                 }`}
               >
                 <span 
@@ -117,7 +117,7 @@ export default function SearchPanel({ onTrace, loading }) {
                 />
                 <span>{item.label}</span>
                 {isSelected && (
-                  <CheckCircle2 size={13} className="text-[#d8b84d]" />
+                  <CheckCircle2 size={13} className="text-[#B45309] dark:text-[#FFE28A]" />
                 )}
               </button>
             );
@@ -133,7 +133,7 @@ export default function SearchPanel({ onTrace, loading }) {
             key={p.label}
             type="button"
             onClick={() => handleAddressChange(p.addr)}
-            className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-slate-300 hover:bg-white/15 hover:border-white/20 transition"
+            className="rounded-lg border border-slate-200 dark:border-white/10 bg-slate-100/90 dark:bg-white/5 px-2.5 py-1 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/15 hover:border-slate-300 dark:hover:border-white/20 transition cursor-pointer shadow-sm"
           >
             {p.label}
           </button>
@@ -142,7 +142,7 @@ export default function SearchPanel({ onTrace, loading }) {
 
       {/* Address Input */}
       <div>
-        <label className="mb-1.5 block text-xs font-medium text-slate-400">
+        <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">
           Wallet address (TRON, EVM hex, BTC, or Case Entity ID)
         </label>
         <Compose
@@ -156,28 +156,27 @@ export default function SearchPanel({ onTrace, loading }) {
 
       {/* FIR / Case No Input */}
       <div className="mt-4">
-        <label className="mb-1.5 block text-xs font-medium text-slate-400">FIR / NCRP complaint reference</label>
-        <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-black/30 px-3.5 py-2.5 focus-within:border-[#d8b84d]/50 transition">
-          <Search size={14} className="text-slate-500" />
+        <label className="mb-1.5 block text-xs font-medium text-slate-600 dark:text-slate-400">FIR / NCRP complaint reference</label>
+        <div className="glass-input flex items-center gap-2 rounded-xl px-3.5 py-2.5 focus-within:border-[#d8b84d] transition">
+          <Search size={14} className="text-slate-400 dark:text-slate-500 shrink-0" />
           <input
             value={firNo}
             onChange={(e) => setFirNo(e.target.value)}
-            className="mono w-full bg-transparent text-sm text-slate-200 outline-none placeholder:text-slate-600"
+            className="mono w-full bg-transparent text-sm text-slate-900 dark:text-slate-100 outline-none placeholder:text-slate-400 dark:placeholder:text-slate-600"
             placeholder="e.g. SIH/2026/00412"
           />
         </div>
       </div>
 
-      {/* Start Trace Action Button */}
+      {/* Start Trace Action Button (Rolex Luxury Gold Gradient) */}
       <button
         type="button"
         onClick={() => onTrace(address, chain, firNo)}
         disabled={loading || !address}
-        style={{ background: "#d8b84d", color: "#0f1a0a" }}
-        className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3.5 text-sm font-bold transition hover:brightness-110 disabled:opacity-50 shadow-xl cursor-pointer"
+        className="rolex-gold-btn mt-5 flex w-full items-center justify-center gap-2 rounded-xl px-4 py-3.5 text-sm font-extrabold tracking-wide transition disabled:opacity-50 cursor-pointer"
       >
-        {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
-        <span>{loading ? "Traversing multi-chain graph..." : "Start autonomous trace"}</span>
+        {loading ? <Loader2 className="h-4 w-4 animate-spin text-[#150F00]" /> : <Search className="h-4 w-4 text-[#150F00]" strokeWidth={2.5} />}
+        <span className="text-[#150F00]">{loading ? "Traversing multi-chain graph..." : "Start autonomous trace"}</span>
       </button>
 
       {/* Footer Info */}

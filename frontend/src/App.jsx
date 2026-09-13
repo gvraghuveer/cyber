@@ -1,8 +1,10 @@
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { SetuDashboard } from "./components/SetuDashboard.jsx";
+import { LandingPage } from "./components/LandingPage.jsx";
 import DashboardPage from "./components/DashboardPage.jsx";
 import { AuthPage } from "./components/AuthPage.jsx";
+import ScrollToTop from "./components/ui/ScrollToTop.jsx";
+import { ThemeProvider } from "./lib/ThemeContext.jsx";
 
 const pageVariants = {
   initial: {
@@ -43,7 +45,7 @@ function AnimatedRoutes() {
           path="/"
           element={
             <motion.div variants={pageVariants} initial="initial" animate="animate" exit="exit" className="w-full">
-              <SetuDashboard />
+              <LandingPage />
             </motion.div>
           }
         />
@@ -79,9 +81,13 @@ function AnimatedRoutes() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AnimatedRoutes />
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <AnimatedRoutes />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
+
 
